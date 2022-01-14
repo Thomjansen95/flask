@@ -11,7 +11,9 @@ app = application
 def index():
     return render_template('index.html')
 
-client = boto3.client('lambda')
+client = boto3.client('lambda',
+    region_name = "eu-central-1"
+)
                         
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/calculate_heartrate_range", methods=['GET', 'POST'])
