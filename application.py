@@ -29,10 +29,12 @@ def calculate_heartrate_range():
         #Invoke a lambda function which calculates the max heart rate and gives the target heart rate range              
         result = client.invoke(FunctionName="FlaskTestLambda",
                     InvocationType='RequestResponse',                                      
-                    Payload=json.dumps(payload))
+                    Payload=json.dumps(payload)
+                )
         range = result['Payload'].read()      
         api_response = json.loads(range)               
         return jsonify(api_response)      
 
+# Only when running Flask locally, has to be port 8080 in cloud9.
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=8080, debug= True)
